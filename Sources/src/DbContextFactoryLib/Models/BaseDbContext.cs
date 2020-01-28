@@ -16,7 +16,7 @@ namespace DbContextFactoryLib.Models
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
-            return IsReadOnlyContext ? 0 : base.SaveChanges();
+            return IsReadOnlyContext ? 0 : base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

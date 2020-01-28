@@ -2,6 +2,7 @@
 using DbContextFactoryTests.Fakes;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace DbContextFactoryTests
@@ -48,6 +49,32 @@ namespace DbContextFactoryTests
             var readonlyFakeDbContext2 = contextFactory.CreateReadonlyDbContext<FakeDbContext1>();
 
             Assert.NotEqual(fakeDbContext1, readonlyFakeDbContext2);
+        }
+
+        [Fact]
+        public void ReadOnlySaveChangesTest()
+        {
+            var scope = ServiceScopeFactory.CreateScope();
+            var contextFactory = scope.ServiceProvider.GetRequiredService<IDbContextFactory>();
+
+            var fakeDbContext1 = contextFactory.CreateReadonlyDbContext<FakeDbContext1>();
+            fakeDbContext1.FakeEntities.Add(new FakeEntity());
+            var res = fakeDbContext1.SaveChanges();
+
+            Assert.True(res == 0);
+        }
+
+        [Fact]
+        public async ValueTask ReadOnlySaveChangesAsyncTest()
+        {
+            var scope = ServiceScopeFactory.CreateScope();
+            var contextFactory = scope.ServiceProvider.GetRequiredService<IDbContextFactory>();
+
+            var fakeDbContext1 = contextFactory.CreateReadonlyDbContext<FakeDbContext1>();
+            fakeDbContext1.FakeEntities.Add(new FakeEntity());
+            var res = await fakeDbContext1.SaveChangesAsync();
+
+            Assert.True(res == 0);
         }
 
         [Fact]
