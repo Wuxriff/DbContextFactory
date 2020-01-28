@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DbContextFactory.Models
+namespace DbContextFactoryLib.Models
 {
     public abstract class BaseDbContext : DbContext
     {

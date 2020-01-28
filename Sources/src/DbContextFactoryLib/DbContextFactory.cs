@@ -1,10 +1,10 @@
-﻿using DbContextFactory.Interfaces;
-using DbContextFactory.Models;
+﻿using DbContextFactoryLib.Interfaces;
+using DbContextFactoryLib.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace DbContextFactory
+namespace DbContextFactoryLib
 {
     public sealed class DbContextFactory : IDbContextFactory
     {

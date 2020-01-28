@@ -1,6 +1,6 @@
-﻿using DbContextFactory.Models;
+﻿using DbContextFactoryLib.Models;
 
-namespace DbContextFactory.Interfaces
+namespace DbContextFactoryLib.Interfaces
 {
     public interface IDbContextFactory
     {
