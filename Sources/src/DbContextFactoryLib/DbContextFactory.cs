@@ -32,7 +32,7 @@ namespace DbContextFactoryLib
 
         private TDbContext GetScopedContext<TDbContext>() where TDbContext : BaseDbContext
         {
-            return _serviceProvider.CreateScope().ServiceProvider.GetService<TDbContext>();
+            return _serviceProvider.CreateScope().ServiceProvider.GetRequiredService<TDbContext>();
         }
     }
 }
