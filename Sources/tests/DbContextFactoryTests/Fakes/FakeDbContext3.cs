@@ -11,7 +11,7 @@ namespace DbContextFactoryTests.Fakes
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(FakeDbContext1).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(FakeDbContext3).Assembly);
         }
     }
 }

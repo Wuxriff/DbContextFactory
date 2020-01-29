@@ -46,9 +46,20 @@ namespace DbContextFactoryTests
             var contextFactory = scope.ServiceProvider.GetRequiredService<IDbContextFactory>();
 
             var fakeDbContext1 = contextFactory.CreateDbContext<FakeDbContext1>();
-            var readonlyFakeDbContext2 = contextFactory.CreateReadonlyDbContext<FakeDbContext1>();
+            var readonlyFakeDbContext1 = contextFactory.CreateReadonlyDbContext<FakeDbContext1>();
 
-            Assert.NotEqual(fakeDbContext1, readonlyFakeDbContext2);
+            Assert.NotEqual(fakeDbContext1, readonlyFakeDbContext1);
+        }
+
+        [Fact]
+        public void CreateUnregisteredDbContextTest()
+        {
+            var scope = ServiceScopeFactory.CreateScope();
+            var contextFactory = scope.ServiceProvider.GetRequiredService<IDbContextFactory>();
+
+            Action act = () => contextFactory.CreateDbContext<FakeDbContext4>();
+
+            Assert.Throws<InvalidOperationException>(act);
         }
 
         [Fact]
